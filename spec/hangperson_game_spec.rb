@@ -20,11 +20,11 @@ describe HangpersonGame do
         @game = HangpersonGame.new('garply')
         @valid = @game.guess('a')
       end
-      it 'changes correct guess list', :pending => true do
+      it 'changes correct guess list' do
         @game.guesses.should == 'a'
         @game.wrong_guesses.should == ''
       end
-      it 'returns true', :pending => true do
+      it 'returns true' do
         @valid.should_not be(false)
       end
     end
@@ -33,11 +33,11 @@ describe HangpersonGame do
         @game = HangpersonGame.new('garply')
         @valid = @game.guess('z')
       end
-      it 'changes wrong guess list', :pending => true do
+      it 'changes wrong guess list' do
         @game.guesses.should == ''
         @game.wrong_guesses.should == 'z'
       end
-      it 'returns true', :pending => true do
+      it 'returns true' do
         @valid.should_not be(false)
       end
     end
@@ -46,11 +46,11 @@ describe HangpersonGame do
         @game = HangpersonGame.new('garply')
         guess_several_letters(@game, 'aq')
       end
-      it 'does not change correct guess list', :pending => true do
+      it 'does not change correct guess list' do
         @game.guess('a')
         @game.guesses.should == 'a'
       end
-      it 'does not change wrong guess list', :pending => true do
+      it 'does not change wrong guess list' do
         @game.guess('q')
         @game.wrong_guesses.should == 'q'
       end
