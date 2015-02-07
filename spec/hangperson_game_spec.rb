@@ -54,7 +54,7 @@ describe HangpersonGame do
         @game.guess('q')
         @game.wrong_guesses.should == 'q'
       end
-      it 'returns false', :pending => true do
+      it 'returns false' do
         @game.guess('a').should be(false)
         @game.guess('q').should be(false)
       end
@@ -63,13 +63,13 @@ describe HangpersonGame do
       before :each do
         @game = HangpersonGame.new('foobar')
       end
-      it 'throws an error when empty', :pending => true do
+      it 'throws an error when empty' do
         expect { @game.guess('') }.to raise_error(ArgumentError)
       end
-      it 'throws an error when not a letter', :pending => true do
+      it 'throws an error when not a letter' do
         expect { @game.guess('%') }.to raise_error(ArgumentError)
       end
-      it 'throws an error when nil', :pending => true do
+      it 'throws an error when nil' do
         expect { @game.guess(nil) }.to raise_error(ArgumentError)
       end
     end

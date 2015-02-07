@@ -8,9 +8,16 @@ class HangpersonGame
   	@wrong_guesses = ''
   end
 
-  def guess(new_guess)
+  def guess(player_guess)
+  	if player_guess.nil?
+  		raise ArgumentError
+  	end
+
+  	new_guess = player_guess.downcase
+  	number_of_total_guesses = @guesses.length + @wrong_guesses.length
+
   	# If the guess was valid (single letter)
-  	if new_guess.length == 1
+  	if new_guess.length == 1 and letter?(new_guess)
   		# Append the guess to the right instance variable depending on if it is in our word
   		if @word.include? new_guess
   			# Don't copy guess if it's already there
@@ -19,7 +26,12 @@ class HangpersonGame
   			# Don't copy guess if it's already there
   			@wrong_guesses << new_guess unless @wrong_guesses.include? new_guess
   		end
+  	else
+  		raise ArgumentError
   	end
+
+  	# Return true if a guess was not made before and false otherwise
+  	return (@guesses.length + @wrong_guesses.length > number_of_total_guesses) ? true : false
 
   end
 
@@ -35,5 +47,9 @@ class HangpersonGame
     Net::HTTP.post_form(uri ,{}).body
   end
 
+  private
+  	def letter?(my_letter)
+  		my_letter =~ /[A-Za-z]/
+  	end
 
 end
