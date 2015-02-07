@@ -74,7 +74,7 @@ describe HangpersonGame do
       end
     end
   end
-  describe 'displayed word with guesses', :pending => true do
+  describe 'displayed word with guesses' do
     before :each do
       @game = HangpersonGame.new('banana')
     end
@@ -95,15 +95,15 @@ describe HangpersonGame do
     before :each do 
       @game = HangpersonGame.new('dog')
     end
-    it 'should be win when all letters guessed', :pending => true do
+    it 'should be win when all letters guessed' do
       guess_several_letters(@game, 'ogd')
       @game.check_win_or_lose.should == :win
     end
-    it 'should be lose after 7 incorrect guesses', :pending => true do
+    it 'should be lose after 7 incorrect guesses' do
       guess_several_letters(@game, 'tuvwxyz')
       @game.check_win_or_lose.should == :lose
     end
-    it 'should continue play if neither win nor lose', :pending => true do
+    it 'should continue play if neither win nor lose' do
       guess_several_letters(@game, 'do')
       @game.check_win_or_lose.should == :play
     end

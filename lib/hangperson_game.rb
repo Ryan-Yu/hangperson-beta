@@ -8,6 +8,7 @@ class HangpersonGame
   	@wrong_guesses = ''
   end
 
+  # Processes a player guess
   def guess(player_guess)
   	if player_guess.nil?
   		raise ArgumentError
@@ -32,11 +33,40 @@ class HangpersonGame
 
   	# Return true if a guess was not made before and false otherwise
   	return (@guesses.length + @wrong_guesses.length > number_of_total_guesses) ? true : false
-
   end
 
-  # add the necessary class methods, attributes, etc. here
-  # to make the tests in spec/hangperson_game_spec.rb pass.
+
+  # Returns a win/lose/play symbol according to game state
+  def check_win_or_lose
+  	# Losing situation
+  	if @wrong_guesses.length >= 7 and word_with_guesses.include? '-'
+  		return :lose
+  	end
+  	# Winning situation
+  	unless word_with_guesses.include? '-'
+  		return :win
+  	end
+  	return :play
+  end
+
+
+  # Substitutes correct guesses made so far into the word
+  def word_with_guesses
+  	displayed_word = ""
+  	# For each letter in our word...
+  	@word.each_byte do |b|
+  		# If the letter is contained in our guesses...
+  		if @guesses.include? b.chr
+  			# ... then append the letter
+  			displayed_word << b.chr
+  		else
+  			# ... otherwise append a dash
+  			displayed_word << '-'
+  		end
+	end
+  	return displayed_word
+  end
+
 
   # Get a word from remote "random word" service
 
